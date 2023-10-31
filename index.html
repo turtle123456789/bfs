@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFS</title>
+    <style>
+        li {
+            list-style: none;
+            display: flex;
+            text-align: center;
+        }
+        p {
+            border: 1px solid #000;
+            margin: 0;
+        }
+        .Path{
+            border: 1px solid #000;
+            margin: 0;
+            max-width: 543px;
+            justify-content: center;
+            color: red;
+        }
+        .Result{
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 553px;
+        }
+        
+        .No {
+            width: 40px;
+        }
+        .Expanded {
+            width: 100px;
+        }
+        .Frontier {
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Breadth-First Search</h1>
+    <div>
+        <ul>
+            <li>
+                <p class="No">No.</p>
+                <p class="Expanded">Expanded</p>
+                <p class="Frontier">Frontier [Queue (Front-Rear)]</p>
+            </li>
+            <template id="col-template">
+                <li class="Col">
+                    <p class="No">0</p>
+                    <div style="display: flex;">
+                        <p class="Expanded"></p>
+                        <p class="Frontier"></p>
+                    </div>
+                </li>
+            </template>
+            <li class="Result"></li>
+            <li class="Path"></li>
+        </ul>
+    </div>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="bfs2.js"></script>
+</body>
+</html>
