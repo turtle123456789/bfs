@@ -25,6 +25,7 @@
             display: flex;
             flex-wrap: wrap;
             max-width: 553px;
+        
         }
         
         .No {
@@ -36,32 +37,48 @@
         .Frontier {
             width: 400px;
         }
+        .center{
+            display: flex;
+            justify-content: center;
+        }
+        button{
+            cursor: pointer;
+        }
     </style>
 </head>
-<body>
+<body style="text-align: center;">
     <h1>Breadth-First Search</h1>
     <div>
-        <ul>
-            <li>
-                <p class="No">No.</p>
-                <p class="Expanded">Expanded</p>
-                <p class="Frontier">Frontier [Queue (Front-Rear)]</p>
-            </li>
-            <template id="col-template">
-                <li class="Col">
-                    <p class="No">0</p>
-                    <div style="display: flex;">
-                        <p class="Expanded"></p>
-                        <p class="Frontier"></p>
-                    </div>
+        <div>
+            <!-- Add an input area for inputData -->
+            <textarea id="inputData" rows="10" cols="50"></textarea><br>
+            <button onclick="executeSearch()">Tìm Đường Đi</button>
+        </div>
+        <div class="center">
+            <ul>
+                <li>
+                    <p class="No">No.</p>
+                    <p class="Expanded">Expanded</p>
+                    <p class="Frontier">Frontier [Queue (Front-Rear)]</p>
                 </li>
-            </template>
-            <li class="Result"></li>
-            <li class="Path"></li>
-        </ul>
+                <template id="col-template">
+                    <li class="Col">
+                        <p class="No">0</p>
+                        <div style="display: flex;">
+                            <p class="Expanded"></p>
+                            <p class="Frontier"></p>
+                        </div>
+                    </li>
+                </template>
+                <li class="Result"></li>
+                <li class="Path"></li>
+            </ul>
+        </div>
     </div>
 
     <!-- Link to the external JavaScript file -->
-    <script src="bfs2.js"></script>
+    <script src="bfs2.js">
+
+    </script>
 </body>
 </html>
