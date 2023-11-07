@@ -11,12 +11,12 @@ function createNode(state, parent = null, action = null, pCost = 0) {
   // Khởi tạo biến inputData là chuỗi rỗng
   const inputData = '';
   
-  // Định nghĩa hàm để tạo hàng đợi ưu dựa trên hàm so sánh
+  // Định nghĩa hàm để tạo hàng đợi ưu tiên dựa trên hàm so sánh
   function createPriorityQueue(compareFunction) {
     const queue = [];
   
     return {
-      // Thêm một phần tử vào hàng đợi ưu
+      // Thêm một phần tử vào hàng đợi ưu tiên
       enqueue: function (element) {
         if (this.isEmpty()) {
           queue.push(element);
@@ -51,8 +51,18 @@ function createNode(state, parent = null, action = null, pCost = 0) {
     const graph = {};
   
     let startNode, endNode;
+    const adjustedLines = [];
+  
     lines.forEach((line) => {
-      const parts = line.trim().split(" ");
+      const parts = line.trim().split(/\s+/);
+      if (parts[0] !== "edge" && parts[0] !== "startNode" && parts[0] !== "endNode") {
+        // Nếu dòng không bắt đầu bằng "startNode", "endNode" hoặc "edge", thêm "edge" vào trước nó.
+        line = "edge " + line;
+      }
+      adjustedLines.push(line);
+    });
+    adjustedLines.forEach((line) => {
+      const parts = line.trim().split(/\s+/);
       if (parts[0] === "startNode") {
         startNode = parts[1];
       } else if (parts[0] === "endNode") {
@@ -69,9 +79,11 @@ function createNode(state, parent = null, action = null, pCost = 0) {
         graph[to][from] = parseInt(cost);
       }
     });
+  
     addRow('', `${startNode}`);
     return { startNode, endNode, graph };
   }
+  
   
   // Định nghĩa hàm expand để mở rộng các nút con từ nút hiện tại
   function expand(problem, node) {
@@ -262,7 +274,7 @@ function createNode(state, parent = null, action = null, pCost = 0) {
               }
             }
           }
-          //   console.log("childNodes", childNodes);
+            // console.log("childNodes", childNodes);
         });
   
         const result = steps[steps.length - 1];
@@ -282,4 +294,3 @@ function createNode(state, parent = null, action = null, pCost = 0) {
       console.error("Đã xảy ra lỗi khi đọc dữ liệu từ tệp văn bản:", error);
     }
   }
-  
